@@ -226,6 +226,12 @@ module Slack
             throw ArgumentError.new('Required arguments :channel missing') if options[:channel].nil?
             throw ArgumentError.new('Required arguments :post_at missing') if options[:post_at].nil?
             throw ArgumentError.new('Required arguments :text missing') if options[:text].nil? && options[:blocks].nil?
+            # blocks must be passed as an encoded JSON string
+            if options.key?(:blocks)
+              blocks = options[:blocks]
+              blocks = JSON.dump(blocks) unless blocks.is_a?(String)
+              options = options.merge(blocks: blocks)
+            end
             post('chat.scheduleMessage', options)
           end
 
