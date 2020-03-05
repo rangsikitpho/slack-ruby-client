@@ -225,7 +225,7 @@ module Slack
           def chat_scheduleMessage(options = {})
             throw ArgumentError.new('Required arguments :channel missing') if options[:channel].nil?
             throw ArgumentError.new('Required arguments :post_at missing') if options[:post_at].nil?
-            throw ArgumentError.new('Required arguments :text missing') if options[:text].nil?
+            throw ArgumentError.new('Required arguments :text missing') if options[:text].nil? && options[:blocks].nil?
             post('chat.scheduleMessage', options)
           end
 
