@@ -285,7 +285,7 @@ module Slack
             throw ArgumentError.new('Required arguments :channel missing') if options[:channel].nil?
             throw ArgumentError.new('Required arguments :text, :attachments or :blocks missing') if options[:text].nil? && options[:attachments].nil? && options[:blocks].nil?
             throw ArgumentError.new('Required arguments :ts missing') if options[:ts].nil?
-            options = options.merge(channel: channels_id(options)['channel']['id']) if options[:channel]
+            #options = options.merge(channel: channels_id(options)['channel']['id']) if options[:channel]
             # attachments must be passed as an encoded JSON string
             if options.key?(:attachments)
               attachments = options[:attachments]
